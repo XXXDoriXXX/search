@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.pte_cache/
+eval/out/
+eval/baselines/out/
+.pytest_cache/

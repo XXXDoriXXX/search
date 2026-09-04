@@ -1,0 +1,89 @@
+{
+  "leads": [
+    {
+      "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+      "file": "manufacturer.html",
+      "tier": "A",
+      "title": "GSR 12V-35 FC Professional | Bosch Professional",
+      "match_any": [
+        "gsr12v35fc"
+      ],
+      "ids": [
+        "06019H3002",
+        "3165140876643"
+      ]
+    },
+    {
+      "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+      "file": "datasheet.pdf",
+      "tier": "A",
+      "title": "GSR 12V-35 FC datasheet (PDF)",
+      "match_any": [
+        "datasheet",
+        "technicaldata",
+        "technischedaten",
+        "specifications"
+      ],
+      "require_all": [
+        "gsr12v35fc"
+      ]
+    },
+    {
+      "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+      "file": "icecat.html",
+      "tier": "B",
+      "title": "Bosch GSR 12V-35 FC - Icecat",
+      "match_any": [
+        "gsr12v35fc"
+      ],
+      "ids": [
+        "3165140876643"
+      ]
+    },
+    {
+      "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+      "file": "shop-a.html",
+      "tier": "C",
+      "match_any": [
+        "gsr12v35"
+      ]
+    },
+    {
+      "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+      "file": "shop-b.html",
+      "tier": "C",
+      "match_any": [
+        "gsr12v35"
+      ]
+    },
+    {
+      "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+      "file": "shop-c.html",
+      "tier": "C",
+      "match_any": [
+        "gsr12v35"
+      ]
+    },
+    {
+      "url": "https://shop-d.example/bosch-gsr-12v-35",
+      "file": "sibling.html",
+      "tier": "C",
+      "match_any": [
+        "gsr12v35"
+      ]
+    },
+    {
+      "url": "https://forum.example/t/gsr-12v-35-fc-warranty",
+      "file": "forum.html",
+      "tier": "D",
+      "match_any": [
+        "warranty",
+        "\u0433\u0430\u0440\u0430\u043d\u0442\u0456\u044f",
+        "garantie"
+      ],
+      "require_all": [
+        "gsr12v35fc"
+      ]
+    }
+  ]
+}

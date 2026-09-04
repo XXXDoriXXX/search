@@ -17,6 +17,59 @@
 | 07 | [Brainstorm](docs/07-brainstorm.md) | Ідеї з оцінкою impact/effort |
 | 08 | [Оцінка та roadmap](docs/08-evaluation-and-roadmap.md) | Golden dataset, метрики, фази |
 
+## Прототип (робочий код)
+
+Пакет `pte/` реалізує весь пайплайн з док 03 і проходить end-to-end на офлайн-корпусі з реальними пастками вебу.
+
+```bash
+pip install -r requirements.txt
+python3 fixtures/demo/build.py                       # синтетичний корпус: виробник (JSON-LD), агрегатор, 3 магазини з однією скопійованою
+                                                     # помилкою, сусідня модель GSR 12V-35, PDF datasheet, форум
+python3 -m pte "Bosch GSR 12V-35 FC" --offline --fixtures fixtures/demo/index.json --trace --json out.json
+python3 -m pytest -q                                 # 21 тест: одиниці, sibling-логіка, copy-chain, abstain, grounding, схема
+python3 eval/run_eval.py                             # метрики AC-C1..C7 на golden set
+```
+
+Що робить прототип на демо-корпусі (усе видно в `--trace`):
+
+| Пастка | Що роблять answer engines | Що робить PTE |
+|---|---|---|
+| Три магазини скопіювали spec-блок з помилкою "30 Nm" | "консенсус" 3 проти 1 | Копії згорнуті в 1 голос; перемагає 35 Nm від виробника + PDF + агрегатора; 30 Nm лишається кандидатом з причиною `copy-chain` |
+| Сторінка сусідньої моделі GSR 12V-35 (без FC) | змішує спеки | entity match 0.15, жодне значення не потрапляє у вихід |
+| Вага 0.8 kg (з батареєю) vs 0.59 kg (без) | бере будь-яку | 590 g `verified` 3 голосами, 800 g кандидат з `context` |
+| Гарантія: магазини 24 міс vs форум 3 роки | впевнено називає одне | `conflict`, value=null, обидва кандидати з доказами, `search_log` |
+| Поле відсутнє після першого раунду | нічого | hole-driven запит `"GSR 12V-35 FC" warranty` знаходить форум у раунді 2 |
+| Значення, якого нема в тексті джерела | галюцинація | grounding check відкидає claim ще до голосування; AC-C4 = 0 |
+
+Live-режим (потрібна мережа; у цій сесії egress-політика блокує все, крім PyPI, тому live не запускався):
+
+```bash
+export SERPER_API_KEY=...   # Google через serper.dev (опційно)
+export BRAVE_API_KEY=...    # Brave Search (опційно)
+export ANTHROPIC_API_KEY=... # вмикає LLM-екстрактор для сторінок tier A/B (опційно)
+python3 -m pte "Bosch GSR 12V-35 FC" --tier-a bosch-professional.com --tier-b icecat.biz --json out.json
+export PERPLEXITY_API_KEY=... && python3 eval/baselines/perplexity.py && python3 eval/run_eval.py --live --baseline eval/baselines/out/perplexity.jsonl
+```
+
+Без ключів працюють DuckDuckGo HTML і Wikidata; Wayback-конектор потребує списку доменів виробника.
+
+Структура:
+
+| Модуль | Роль |
+|---|---|
+| `pte/query.py` | R0: бренд, код моделі (з транслітом змішаних кодів), варіантні осі, категорія, query variants, hole-запити |
+| `pte/connectors/` | `SourceConnector` протокол, реєстр з circuit breaker; DuckDuckGo, Brave, Serper, Wikidata, Wayback, Fixture |
+| `pte/fetch.py` | httpx + content-addressed кеш, per-domain concurrency, HTML→текст зі збереженням таблиць, PDF→текст |
+| `pte/extract/` | JSON-LD/OG, key-value/таблиці з розщепленням `hard/soft`, опційний LLM з обов'язковим evidence |
+| `pte/match.py` | Entity match: identifiers → точний код → sibling-детекція за кількістю входжень |
+| `pte/independence.py` | Copy-chain: shingle-Jaccard spec-блоків + власники доменів → кластери |
+| `pte/truth.py` | Класи еквівалентності з tolerance, CRH-ітерації ваг, статуси `verified/single_source/conflict/unknown`, Ledger |
+| `pte/guard.py` | Діапазони, grounding, крос-польові інваріанти, GTIN checksum |
+| `pte/pipeline.py` | Оркестрація раундів, бюджети, hole-driven цикл з early-stop, збірка документа |
+| `eval/` | Golden set, метрики AC, бейзлайн Perplexity |
+
+Що ще не реалізовано з дизайну: Temporal-оркестрація, Common Crawl, регуляторні бази, vision/OCR, LLM-арбітр для `conflict`, персистентний PKG (ledger зараз in-memory), онтологія лише для 2 категорій.
+
 Машиночитані артефакти:
 
 - [`schema/product.schema.json`](schema/product.schema.json) — JSON Schema вихідного документа.
