@@ -1,0 +1,42 @@
+identity: Bosch GSR 12V-35 FC [resolved 0.99] mpn=06019H3002 gtins=['3165140876643']
+  core.weight_g                 verified       0.93  590 g <- 3 src, 3 indep | candidates: [(800, 0.067)]
+  core.warranty_months          conflict       0.34  None | candidates: [(24, 0.717), (36, 0.283)]
+  core.color                    single_source  0.79  Blue <- 3 src, 1 indep
+  core.length_mm                unknown        0.00  None
+  core.width_mm                 unknown        0.00  None
+  core.height_mm                unknown        0.00  None
+  core.country_of_origin        unknown        0.00  None
+  core.in_the_box               unknown        0.00  None
+  attributes.voltage_v                verified       0.99  12 V <- 6 src, 4 indep
+  attributes.max_torque_hard_nm       verified       0.93  35 Nm <- 3 src, 3 indep | candidates: [(30, 0.073)]
+  attributes.max_torque_soft_nm       verified       0.99  20 Nm <- 2 src, 2 indep
+  attributes.no_load_speed_rpm        verified       0.99  1750 rpm <- 6 src, 4 indep
+  attributes.chuck_type               verified       0.99  FlexiClick <- 1 src, 1 indep
+  attributes.motor_type               verified       0.99  brushless <- 3 src, 3 indep
+  attributes.chuck_capacity_mm        verified       0.99  1 - 10 mm <- 1 src, 1 indep
+  attributes.battery_capacity_ah      unknown        0.00  None
+  attributes.battery_included         unknown        0.00  None
+unresolved:
+  core.warranty_months: conflict: candidates: 24 months (0.72; 3 page(s)) vs 36 months (0.28; 1 page(s); outvoted (1 independent vote from 1 page))
+  core.length_mm: unknown: no claims after 2 round(s)
+  core.width_mm: unknown: no claims after 2 round(s)
+  core.height_mm: unknown: no claims after 2 round(s)
+  core.country_of_origin: unknown: no claims after 2 round(s)
+  core.in_the_box: unknown: no claims after 2 round(s)
+  attributes.battery_capacity_ah: unknown: no claims after 2 round(s)
+  attributes.battery_included: unknown: no claims after 2 round(s)
+meta: rounds=2 pages=8 domains=7 235ms
+
+--- trace ---
+understand: brand=Bosch model=GSR 12V-35 FC category=tools/power_tools variant=['kit=solo']
+anchor: Bosch GSR 12V-35 FC ids={'gtins': ['3165140876643'], 'mpn': '06019H3002', 'asin': None, 'other': {}} conf=0.99 support=4
+page bosch-professional.example tier=A match=1.0 (gtin match) kind=product
+page icecat.example tier=B match=0.9 (exact model in title/head) kind=other
+page shop-a.example tier=C match=0.6 (model in head but sibling codes present: ['GSR12V35']) kind=product
+page shop-b.example tier=C match=0.6 (model in head but sibling codes present: ['GSR12V35']) kind=product
+page shop-c.example tier=C match=0.6 (model in head but sibling codes present: ['GSR12V35']) kind=product
+page shop-d.example tier=C match=0.15 (only sibling model present) kind=other
+page bosch-professional.example tier=A match=0.9 (exact model in title/head) kind=document
+page forum.example tier=D match=0.9 (exact model in title/head) kind=other
+round 2: +1 claims, gain=0.460
+round 3: no new leads for holes ['length_mm', 'width_mm', 'height_mm', 'battery_capacity_ah', 'in_the_box', 'battery_included', 'warranty_months', 'country_of_origin', 'color']

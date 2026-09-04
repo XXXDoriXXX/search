@@ -1,0 +1,974 @@
+{
+  "identity": {
+    "status": "resolved",
+    "confidence": 0.99,
+    "brand": {
+      "value": "Bosch",
+      "raw": [],
+      "status": "verified",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Bosch",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Bosch",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Bosch",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "identifier",
+        "independent_votes": 3,
+        "margin": 1.0,
+        "constraints_checked": []
+      }
+    },
+    "model": {
+      "value": "GSR 12V-35 FC",
+      "raw": [],
+      "status": "verified",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "GSR 12V-35 FC",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "GSR 12V-35 FC",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "GSR 12V-35 FC",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "identifier",
+        "independent_votes": 3,
+        "margin": 1.0,
+        "constraints_checked": []
+      }
+    },
+    "model_normalized": "GSR12V35FC",
+    "variant": {
+      "axes": {
+        "kit": {
+          "value": "solo",
+          "raw": [],
+          "status": "verified",
+          "confidence": 0.95,
+          "sources": [
+            {
+              "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+              "tier": "C",
+              "snippet": "solo",
+              "fetched_at": "2026-09-04T17:57:47+00:00",
+              "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10"
+            },
+            {
+              "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+              "tier": "C",
+              "snippet": "solo",
+              "fetched_at": "2026-09-04T17:57:47+00:00",
+              "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81"
+            },
+            {
+              "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+              "tier": "C",
+              "snippet": "solo",
+              "fetched_at": "2026-09-04T17:57:47+00:00",
+              "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84"
+            }
+          ],
+          "candidates": [],
+          "resolution": {
+            "method": "identifier",
+            "independent_votes": 3,
+            "margin": 1.0,
+            "constraints_checked": []
+          }
+        }
+      }
+    },
+    "mpn": {
+      "value": "06019H3002",
+      "raw": [],
+      "status": "verified",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "06019H3002",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "06019H3002",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "06019H3002",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "identifier",
+        "independent_votes": 3,
+        "margin": 1.0,
+        "constraints_checked": []
+      }
+    },
+    "gtins": {
+      "value": [
+        "3165140876643"
+      ],
+      "raw": [],
+      "status": "verified",
+      "confidence": 0.95,
+      "sources": [
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "['3165140876643']",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "['3165140876643']",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "['3165140876643']",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "identifier",
+        "independent_votes": 3,
+        "margin": 1.0,
+        "constraints_checked": []
+      }
+    },
+    "category_path": [
+      "tools",
+      "power_tools"
+    ],
+    "canonical_name": "Bosch GSR 12V-35 FC",
+    "aliases": [],
+    "lifecycle": {},
+    "alternatives_considered": [
+      {
+        "key": "06019H3002",
+        "score": 0.9,
+        "urls": [
+          "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional"
+        ]
+      },
+      {
+        "key": "3165140876643",
+        "score": 0.72,
+        "urls": [
+          "https://icecat.example/en/p/bosch/gsr-12v-35-fc"
+        ]
+      }
+    ]
+  },
+  "core": {
+    "weight_g": {
+      "value": 590,
+      "unit": "g",
+      "raw": [
+        "0.59 kg",
+        "590 g"
+      ],
+      "status": "verified",
+      "confidence": 0.933,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "weight: 0.59 kg",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "jsonld"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Weight excl. battery: 0.59 kg",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+          "tier": "B",
+          "snippet": "Weight: 590 g",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:e84fa4c6a0e81b8cd3cc15849dec30141444fd2fe2f1f76de89278b39b563a97",
+          "independence_cluster": "c2",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [
+        {
+          "value": 800,
+          "unit": "g",
+          "score": 0.067,
+          "sources": [
+            "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+            "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+            "https://shop-c.example/bosch/gsr-12v-35-fc"
+          ],
+          "rejected_reason": "outvoted (1 independent vote from 3 pages); pages share an identical spec block (copy-chain)"
+        }
+      ],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 3,
+        "margin": 0.865,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants",
+      "context": "net_without_battery"
+    },
+    "warranty_months": {
+      "unit": "months",
+      "raw": [
+        "24 months"
+      ],
+      "status": "conflict",
+      "confidence": 0.344,
+      "sources": [],
+      "candidates": [
+        {
+          "value": 24,
+          "unit": "months",
+          "score": 0.717,
+          "sources": [
+            "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+            "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+            "https://shop-c.example/bosch/gsr-12v-35-fc"
+          ]
+        },
+        {
+          "value": 36,
+          "unit": "months",
+          "score": 0.283,
+          "sources": [
+            "https://forum.example/t/gsr-12v-35-fc-warranty"
+          ],
+          "rejected_reason": "outvoted (1 independent vote from 1 page)"
+        }
+      ],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 1,
+        "margin": 0.435,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants",
+      "value": null
+    },
+    "color": {
+      "value": "Blue",
+      "raw": [
+        "Blue"
+      ],
+      "status": "single_source",
+      "confidence": 0.792,
+      "sources": [
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Color: Blue",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Color: Blue",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Color: Blue",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 1,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "variant"
+    },
+    "length_mm": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    },
+    "width_mm": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    },
+    "height_mm": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    },
+    "country_of_origin": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    },
+    "in_the_box": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    }
+  },
+  "attributes": {
+    "voltage_v": {
+      "value": 12,
+      "unit": "V",
+      "raw": [
+        "12 V"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "Battery voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Battery voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+          "tier": "B",
+          "snippet": "Battery voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:e84fa4c6a0e81b8cd3cc15849dec30141444fd2fe2f1f76de89278b39b563a97",
+          "independence_cluster": "c2",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "Voltage: 12 V",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 4,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "max_torque_hard_nm": {
+      "value": 35,
+      "unit": "Nm",
+      "raw": [
+        "35 Nm"
+      ],
+      "status": "verified",
+      "confidence": 0.927,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "Max. torque (hard/soft): 35 / 20 Nm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Max. torque (hard/soft): 35 / 20 Nm",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+          "tier": "B",
+          "snippet": "Maximum torque: 35 Nm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:e84fa4c6a0e81b8cd3cc15849dec30141444fd2fe2f1f76de89278b39b563a97",
+          "independence_cluster": "c2",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [
+        {
+          "value": 30,
+          "unit": "Nm",
+          "score": 0.073,
+          "sources": [
+            "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+            "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+            "https://shop-c.example/bosch/gsr-12v-35-fc"
+          ],
+          "rejected_reason": "outvoted (1 independent vote from 3 pages); pages share an identical spec block (copy-chain)"
+        }
+      ],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 3,
+        "margin": 0.855,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "max_torque_soft_nm": {
+      "value": 20,
+      "unit": "Nm",
+      "raw": [
+        "20 Nm"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "Max. torque (hard/soft): 35 / 20 Nm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Max. torque (hard/soft): 35 / 20 Nm",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 2,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "no_load_speed_rpm": {
+      "value": 1750,
+      "unit": "rpm",
+      "raw": [
+        "0 - 1,750 rpm",
+        "0 – 1,750 rpm",
+        "1750 RPM",
+        "1750 rpm"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "No-load speed: 0 – 1,750 rpm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "No-load speed: 0 - 1,750 rpm",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+          "tier": "B",
+          "snippet": "No-load speed: 1750 RPM",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:e84fa4c6a0e81b8cd3cc15849dec30141444fd2fe2f1f76de89278b39b563a97",
+          "independence_cluster": "c2",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "No-load speed: 1750 rpm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:cc737dfeffd10d123564094da7900c2e6dcf6c955f69072f9c515e0420cb9d10",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "No-load speed: 1750 rpm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:c2076a9ee8cea17ba56d863e14802435e626ea4dc7c1175a2efcfdc0f39fbf81",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+          "tier": "C",
+          "snippet": "No-load speed: 1750 rpm",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:95ef66fd274b64d8b2cb7e2d89b2044bbe2a1622bc0fdf35722d9bdf0ccb3e84",
+          "independence_cluster": "c3",
+          "entity_match": 0.6,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 4,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "chuck_type": {
+      "value": "FlexiClick",
+      "raw": [
+        "FlexiClick"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "Chuck type: FlexiClick",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "tier_a_override",
+        "independent_votes": 1,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "motor_type": {
+      "value": "brushless",
+      "raw": [
+        "Brushless",
+        "Brushless (EC)"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/gb/en/gsr-12v-35-fc-professional",
+          "tier": "A",
+          "snippet": "Motor type: Brushless",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:28428019ed1d2066053cff27bb15421d44b4ce1bf23de6eee8b590098424e382",
+          "independence_cluster": "c4",
+          "entity_match": 1.0,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Motor type: Brushless (EC)",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        },
+        {
+          "url": "https://icecat.example/en/p/bosch/gsr-12v-35-fc",
+          "tier": "B",
+          "snippet": "Motor type: Brushless",
+          "fetched_at": "2026-09-04T17:57:47+00:00",
+          "snapshot": "sha256:e84fa4c6a0e81b8cd3cc15849dec30141444fd2fe2f1f76de89278b39b563a97",
+          "independence_cluster": "c2",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "weighted_vote",
+        "independent_votes": 3,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "chuck_capacity_mm": {
+      "value": "1 - 10 mm",
+      "raw": [
+        "1 - 10 mm"
+      ],
+      "status": "verified",
+      "confidence": 0.99,
+      "sources": [
+        {
+          "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+          "tier": "A",
+          "snippet": "Chuck capacity: 1 - 10 mm",
+          "fetched_at": "2026-09-04T17:57:48+00:00",
+          "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d",
+          "independence_cluster": "c5",
+          "entity_match": 0.9,
+          "extractor": "kv"
+        }
+      ],
+      "candidates": [],
+      "resolution": {
+        "method": "tier_a_override",
+        "independent_votes": 1,
+        "margin": 1.0,
+        "constraints_checked": []
+      },
+      "applies_to": "shared_across_variants"
+    },
+    "battery_capacity_ah": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    },
+    "battery_included": {
+      "raw": [],
+      "status": "unknown",
+      "confidence": 0.0,
+      "sources": [],
+      "candidates": [],
+      "value": null
+    }
+  },
+  "extra": {},
+  "media": {
+    "images": [
+      {
+        "url": "https://www.bosch-professional.example/img/gsr12v35fc.jpg",
+        "source": "bosch-professional.example",
+        "entity_match": 1.0
+      }
+    ],
+    "documents": [
+      {
+        "url": "https://www.bosch-professional.example/media/gsr-12v-35-fc-datasheet.pdf",
+        "kind": "datasheet",
+        "snapshot": "sha256:ffc8663bb431b2d7fb9d2c7ec227f90086c8e5a1d8918d43dd0fb3515ecca76d"
+      }
+    ],
+    "videos": []
+  },
+  "offers": [
+    {
+      "price": 4999.0,
+      "currency": "UAH",
+      "availability": "InStock",
+      "seller": "shop-a.example",
+      "url": "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+      "as_of": "2026-09-04T17:57:47+00:00"
+    },
+    {
+      "price": 5099.0,
+      "currency": "UAH",
+      "availability": "InStock",
+      "seller": "shop-b.example",
+      "url": "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+      "as_of": "2026-09-04T17:57:47+00:00"
+    },
+    {
+      "price": 4899.0,
+      "currency": "UAH",
+      "availability": "InStock",
+      "seller": "shop-c.example",
+      "url": "https://shop-c.example/bosch/gsr-12v-35-fc",
+      "as_of": "2026-09-04T17:57:47+00:00"
+    }
+  ],
+  "relations": {
+    "variants": [],
+    "accessories": [],
+    "compatible_with": [],
+    "replaces": [],
+    "replaced_by": []
+  },
+  "unresolved": [
+    {
+      "field": "core.warranty_months",
+      "status": "conflict",
+      "reason": "candidates: 24 months (0.72; 3 page(s)) vs 36 months (0.28; 1 page(s); outvoted (1 independent vote from 1 page))",
+      "candidates": [
+        {
+          "value": 24,
+          "unit": "months",
+          "score": 0.717,
+          "sources": [
+            "https://shop-a.example/p/bosch-gsr-12v-35-fc",
+            "https://shop-b.example/product/12345-bosch-gsr-12v-35-fc",
+            "https://shop-c.example/bosch/gsr-12v-35-fc"
+          ]
+        },
+        {
+          "value": 36,
+          "unit": "months",
+          "score": 0.283,
+          "sources": [
+            "https://forum.example/t/gsr-12v-35-fc-warranty"
+          ],
+          "rejected_reason": "outvoted (1 independent vote from 1 page)"
+        }
+      ],
+      "search_log": [
+        "\"GSR 12V-35 FC\" warranty",
+        "\"GSR 12V-35 FC\" Garantie",
+        "\"GSR 12V-35 FC\" warranty",
+        "\"GSR 12V-35 FC\" Garantie"
+      ]
+    },
+    {
+      "field": "core.length_mm",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" length",
+        "\"06019H3002\" length",
+        "\"GSR 12V-35 FC\" length",
+        "\"06019H3002\" length"
+      ]
+    },
+    {
+      "field": "core.width_mm",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" width",
+        "\"06019H3002\" width",
+        "\"GSR 12V-35 FC\" width",
+        "\"06019H3002\" width"
+      ]
+    },
+    {
+      "field": "core.height_mm",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" height",
+        "\"06019H3002\" height",
+        "\"GSR 12V-35 FC\" height",
+        "\"06019H3002\" height"
+      ]
+    },
+    {
+      "field": "core.country_of_origin",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" country of origin",
+        "\"06019H3002\" country of origin",
+        "\"GSR 12V-35 FC\" country of origin",
+        "\"06019H3002\" country of origin"
+      ]
+    },
+    {
+      "field": "core.in_the_box",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" in the box",
+        "\"06019H3002\" in the box",
+        "\"GSR 12V-35 FC\" in the box",
+        "\"06019H3002\" in the box"
+      ]
+    },
+    {
+      "field": "attributes.battery_capacity_ah",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" battery capacity",
+        "\"06019H3002\" battery capacity",
+        "\"GSR 12V-35 FC\" battery capacity",
+        "\"06019H3002\" battery capacity"
+      ]
+    },
+    {
+      "field": "attributes.battery_included",
+      "status": "unknown",
+      "reason": "no claims after 2 round(s)",
+      "candidates": [],
+      "search_log": [
+        "\"GSR 12V-35 FC\" battery included",
+        "\"06019H3002\" battery included",
+        "\"GSR 12V-35 FC\" battery included",
+        "\"06019H3002\" battery included"
+      ]
+    }
+  ],
+  "warnings": [],
+  "meta": {
+    "run_id": "run_b39ef2dbb88c",
+    "mode": "standard",
+    "rounds": 2,
+    "duration_ms": 235,
+    "cost_usd": 0.0,
+    "sources_consulted": 7,
+    "pages_fetched": 8,
+    "connectors_failed": [],
+    "schema_version": "1.0.0",
+    "ontology_version": "2026.09",
+    "generated_at": "2026-09-04T17:57:48+00:00"
+  }
+}
