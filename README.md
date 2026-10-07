@@ -1,85 +1,144 @@
 # Product Truth Engine (PTE)
 
-Дизайн системи, яка за назвою товару збирає **максимум даних про саме цей товар**, вирішує конфлікти між джерелами і повертає чистий JSON, у якому кожне поле має доказ (provenance), впевненість і статус верифікації.
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Pydantic](https://img.shields.io/badge/Pydantic-2-E92063?logo=pydantic&logoColor=white)
+![httpx](https://img.shields.io/badge/httpx-async_fetch-2C5BB4)
+![pytest](https://img.shields.io/badge/tested_with-pytest-0A9EDC?logo=pytest&logoColor=white)
+![JSON Schema](https://img.shields.io/badge/output-JSON_Schema-000000?logo=json&logoColor=white)
 
-Ключова ідея, що відрізняє PTE від Perplexity / Exa / Tavily: ми не "шукаємо і переказуємо", ми **встановлюємо факти**. Кожне значення проходить через identifier-anchoring, entity matching, незалежне голосування джерел, hard-constraints і abstain-політику. Якщо факт не доведено, система повертає `unknown` з кандидатами, а не правдоподібну вигадку.
+Given a product name, PTE collects as much data as possible about **that exact product**, resolves conflicts between sources, and returns clean JSON in which every field carries evidence (provenance), a confidence value and a verification status.
 
-## Зміст
+PTE does not search and paraphrase; it **establishes facts**. Every value goes through identifier anchoring, entity matching, independent source voting, hard constraints and an abstain policy. If a fact cannot be proven, the system returns `unknown` together with its candidates instead of a plausible guess.
 
-| # | Документ | Про що |
-|---|----------|--------|
-| 01 | [Проблема та критерії прийняття](docs/01-problem-and-acceptance-criteria.md) | Що означає "100% правильно", тири товарів, режими, вимірювані AC |
-| 02 | [Архітектура](docs/02-architecture.md) | Компоненти, потік даних, паралелізм, стек |
-| 03 | [Алгоритм](docs/03-algorithm.md) | Адаптивний багатораундовий пошук, truth discovery, псевдокод |
-| 04 | [Джерела та дефіцитні товари](docs/04-sources-and-rare-products.md) | Таксономія джерел за авторитетом, playbook для рідкісних товарів |
-| 05 | [Схема виходу](docs/05-output-schema.md) | Envelope поля, core-схема, категорійні розширення |
-| 06 | [Варіанти та trade-off](docs/06-options-and-tradeoffs.md) | Варіанти A/B/C по кожному шару, рекомендація |
-| 07 | [Brainstorm](docs/07-brainstorm.md) | Ідеї з оцінкою impact/effort |
-| 08 | [Оцінка та roadmap](docs/08-evaluation-and-roadmap.md) | Golden dataset, метрики, фази |
+## Features
 
-## Прототип (робочий код)
+- **Identifier-first search**: anchors on MPN, GTIN/EAN/UPC and manufacturer IDs so data about a sibling model is not mixed into the target product.
+- **Hole-driven search**: after each round it finds missing or conflicting fields and generates targeted queries until the budget runs out or gains flatten.
+- **Truth discovery**: iterative weighted voting (CRH style) over source authority, freshness, entity-match quality and source independence.
+- **Copy-chain detection**: shops that copied the same spec block count as one vote, not several.
+- **Hard constraints**: value ranges, GTIN checksum, cross-field invariants, and a grounding check that rejects values not present in the source text.
+- **Abstain policy**: statuses `verified`, `single_source`, `conflict`, `inferred` and `unknown`, always with candidates and evidence.
+- **Pluggable connectors**: DuckDuckGo, Brave, Serper, Wikidata, Wayback and an offline fixture connector, each behind a circuit breaker.
+- **Evaluation harness**: golden set, acceptance-criteria metrics and an optional Perplexity baseline.
 
-Пакет `pte/` реалізує весь пайплайн з док 03 і проходить end-to-end на офлайн-корпусі з реальними пастками вебу.
+## Demo traps the prototype handles
 
-```bash
-pip install -r requirements.txt
-python3 fixtures/demo/build.py                       # синтетичний корпус: виробник (JSON-LD), агрегатор, 3 магазини з однією скопійованою
-                                                     # помилкою, сусідня модель GSR 12V-35, PDF datasheet, форум
-python3 -m pte "Bosch GSR 12V-35 FC" --offline --fixtures fixtures/demo/index.json --trace --json out.json
-python3 -m pytest -q                                 # 21 тест: одиниці, sibling-логіка, copy-chain, abstain, grounding, схема
-python3 eval/run_eval.py                             # метрики AC-C1..C7 на golden set
-```
-
-Що робить прототип на демо-корпусі (усе видно в `--trace`):
-
-| Пастка | Що роблять answer engines | Що робить PTE |
+| Trap | What answer engines do | What PTE does |
 |---|---|---|
-| Три магазини скопіювали spec-блок з помилкою "30 Nm" | "консенсус" 3 проти 1 | Копії згорнуті в 1 голос; перемагає 35 Nm від виробника + PDF + агрегатора; 30 Nm лишається кандидатом з причиною `copy-chain` |
-| Сторінка сусідньої моделі GSR 12V-35 (без FC) | змішує спеки | entity match 0.15, жодне значення не потрапляє у вихід |
-| Вага 0.8 kg (з батареєю) vs 0.59 kg (без) | бере будь-яку | 590 g `verified` 3 голосами, 800 g кандидат з `context` |
-| Гарантія: магазини 24 міс vs форум 3 роки | впевнено називає одне | `conflict`, value=null, обидва кандидати з доказами, `search_log` |
-| Поле відсутнє після першого раунду | нічого | hole-driven запит `"GSR 12V-35 FC" warranty` знаходить форум у раунді 2 |
-| Значення, якого нема в тексті джерела | галюцинація | grounding check відкидає claim ще до голосування; AC-C4 = 0 |
+| Three shops copied a spec block with a wrong "30 Nm" | "Consensus" 3 vs 1 | Copies collapse into one vote; 35 Nm from the manufacturer, PDF and aggregator wins; 30 Nm stays a candidate with reason `copy-chain` |
+| Page for a neighbouring model (GSR 12V-35, no FC) | Mixes specs | Entity match 0.15, no value reaches the output |
+| Weight 0.8 kg (with battery) vs 0.59 kg (without) | Picks either | 590 g `verified` with 3 votes, 800 g kept as a candidate with `context` |
+| Warranty: shops say 24 months, forum says 3 years | Confidently names one | `conflict`, value null, both candidates with evidence and a `search_log` |
+| Field missing after round one | Nothing | Hole-driven query finds the forum in round two |
+| Value not present in the source text | Hallucination | Grounding check rejects the claim before voting |
 
-Live-режим (потрібна мережа; у цій сесії egress-політика блокує все, крім PyPI, тому live не запускався):
+## Getting started
+
+Requires Python 3.11 or newer. The design is documented in Ukrainian under `docs/`; the code and CLI are in English.
 
 ```bash
-export SERPER_API_KEY=...   # Google через serper.dev (опційно)
-export BRAVE_API_KEY=...    # Brave Search (опційно)
-export ANTHROPIC_API_KEY=... # вмикає LLM-екстрактор для сторінок tier A/B (опційно)
-python3 -m pte "Bosch GSR 12V-35 FC" --tier-a bosch-professional.com --tier-b icecat.biz --json out.json
-export PERPLEXITY_API_KEY=... && python3 eval/baselines/perplexity.py && python3 eval/run_eval.py --live --baseline eval/baselines/out/perplexity.jsonl
+git clone -b claude/product-data-parser-g61ar7 https://github.com/XXXDoriXXX/search.git
+cd search
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Без ключів працюють DuckDuckGo HTML і Wikidata; Wayback-конектор потребує списку доменів виробника.
+Run the offline demo (no network, no keys):
 
-Структура:
+```bash
+python3 fixtures/demo/build.py
+python3 -m pte "Bosch GSR 12V-35 FC" --offline --fixtures fixtures/demo/index.json --trace --json out.json
+```
 
-| Модуль | Роль |
+Run the tests and the acceptance metrics:
+
+```bash
+python3 -m pytest -q        # 21 tests
+python3 eval/run_eval.py    # AC-C1..C7 metrics on the golden set
+```
+
+A recorded result of the demo run is in `examples/demo-run.json` (full JSON with evidence) and `examples/demo-run.txt`.
+
+### Live mode
+
+Needs network access. DuckDuckGo HTML and Wikidata work without keys.
+
+```bash
+python3 -m pte "Bosch GSR 12V-35 FC" --tier-a bosch-professional.com --tier-b icecat.biz --trace --json live.json
+```
+
+Optional keys unlock more connectors and the LLM extractor:
+
+```bash
+export SERPER_API_KEY=...
+export BRAVE_API_KEY=...
+export ANTHROPIC_API_KEY=...
+python3 -m pte "Makita DGA504Z" --tier-a makita.de makita.com --mode deep --json live.json
+```
+
+Compare with Perplexity on the same golden set:
+
+```bash
+export PERPLEXITY_API_KEY=...
+python3 eval/baselines/perplexity.py
+python3 eval/run_eval.py --live --baseline eval/baselines/out/perplexity.jsonl
+```
+
+Live mode was not exercised in the author's environment, so treat it as unverified.
+
+### CLI options
+
+| Option | Description |
 |---|---|
-| `pte/query.py` | R0: бренд, код моделі (з транслітом змішаних кодів), варіантні осі, категорія, query variants, hole-запити |
-| `pte/connectors/` | `SourceConnector` протокол, реєстр з circuit breaker; DuckDuckGo, Brave, Serper, Wikidata, Wayback, Fixture |
-| `pte/fetch.py` | httpx + content-addressed кеш, per-domain concurrency, HTML→текст зі збереженням таблиць, PDF→текст |
-| `pte/extract/` | JSON-LD/OG, key-value/таблиці з розщепленням `hard/soft`, опційний LLM з обов'язковим evidence |
-| `pte/match.py` | Entity match: identifiers → точний код → sibling-детекція за кількістю входжень |
-| `pte/independence.py` | Copy-chain: shingle-Jaccard spec-блоків + власники доменів → кластери |
-| `pte/truth.py` | Класи еквівалентності з tolerance, CRH-ітерації ваг, статуси `verified/single_source/conflict/unknown`, Ledger |
-| `pte/guard.py` | Діапазони, grounding, крос-польові інваріанти, GTIN checksum |
-| `pte/pipeline.py` | Оркестрація раундів, бюджети, hole-driven цикл з early-stop, збірка документа |
-| `eval/` | Golden set, метрики AC, бейзлайн Perplexity |
+| `name` | Product name to resolve. |
+| `--mode` | `fast`, `standard` (default) or `deep`. |
+| `--offline` | No network; fixtures and cache only. |
+| `--fixtures` | Path to the fixture `index.json`. |
+| `--cache` | Cache directory. Default `.pte_cache` or `$PTE_CACHE`. |
+| `--tier-a`, `--tier-b` | Domains treated as manufacturer (tier A) or aggregator (tier B). |
+| `--category` | Product category hint. |
+| `--json` | Write the full output JSON to this path. |
+| `--trace` | Print the search and decision trace. |
 
-Що ще не реалізовано з дизайну: Temporal-оркестрація, Common Crawl, регуляторні бази, vision/OCR, LLM-арбітр для `conflict`, персистентний PKG (ledger зараз in-memory), онтологія лише для 2 категорій.
+### Environment variables
 
-Машиночитані артефакти:
+| Variable | Required | Description |
+|---|---|---|
+| `SERPER_API_KEY` | No | Google results via serper.dev. |
+| `BRAVE_API_KEY` | No | Brave Search connector. |
+| `ANTHROPIC_API_KEY` | No | Enables the LLM extractor for tier A/B pages. Requires the `anthropic` package (included in `requirements.txt`). |
+| `PERPLEXITY_API_KEY` | No | Only for the Perplexity baseline in `eval/`. |
+| `PTE_CACHE` | No | Default cache directory. |
 
-- [`schema/product.schema.json`](schema/product.schema.json) — JSON Schema вихідного документа.
-- [`examples/output.example.json`](examples/output.example.json) — ілюстративний приклад відповіді.
+## Project structure
 
-## TL;DR рекомендованого варіанта
+| Module | Role |
+|---|---|
+| `pte/query.py` | Brand, model code, variant axes, category, query variants and hole queries |
+| `pte/connectors/` | `SourceConnector` protocol and registry with circuit breaker; DuckDuckGo, Brave, Serper, Wikidata, Wayback, Fixture |
+| `pte/fetch.py` | httpx with content-addressed cache, per-domain concurrency, HTML and PDF to text |
+| `pte/extract/` | JSON-LD/OpenGraph, key-value and table extraction, optional LLM extractor with mandatory evidence |
+| `pte/match.py` | Entity match: identifiers, exact code, sibling detection |
+| `pte/independence.py` | Copy-chain detection with shingle Jaccard and domain owners |
+| `pte/truth.py` | Equivalence classes with tolerance, weight iterations, statuses, ledger |
+| `pte/guard.py` | Ranges, grounding, cross-field invariants, GTIN checksum |
+| `pte/pipeline.py` | Round orchestration, budgets, hole-driven loop, document assembly |
+| `eval/` | Golden set, acceptance metrics, Perplexity baseline |
+| `schema/product.schema.json` | JSON Schema of the output document |
 
-1. **Identifier-first.** Перший раунд шукає не "дані", а якорі: MPN, GTIN/EAN/UPC, ASIN, ID виробника. Усе подальше прив'язується до якоря, інакше дані про сусідню модифікацію змішуються з цільовою.
-2. **Гібридне discovery.** Пошукові API (Google/Bing/Brave/Yandex/Baidu/Exa/Tavily) для розвідки + вертикальні конектори (виробник, datasheet PDF, Icecat, Wikidata, дистриб'ютори, маркетплейси, регуляторні бази) + архіви (Wayback, Common Crawl) для дефіцитних товарів + власний Product Knowledge Graph, що росте з кожним запитом.
-3. **Hole-driven search.** Після першого проходу система рахує покриття схеми та генерує точкові запити під кожне відсутнє або конфліктне поле, поки є бюджет або поки приріст не впаде нижче порога.
-4. **Truth discovery, а не "LLM вирішить".** Ітеративне зважене голосування (CRH-стиль) з урахуванням авторитету, свіжості, якості entity-match, **незалежності джерел** (копії не рахуються як голоси) та hard-constraints (контрольна сума GTIN, діапазони, крос-польові формули). LLM використовується як екстрактор і як арбітр-голосувальник, ніколи як єдине джерело істини.
-5. **Abstain-політика.** Поле виходить зі статусом `verified` лише за наявності незалежного підтвердження. Інакше `single_source`, `conflict`, `inferred` або `unknown`, завжди з кандидатами та доказами.
-6. **Паралелізм як DAG** з бюджетами (час, гроші, запити), circuit breaker на кожен конектор, спекулятивним виконанням та early-stop при насиченні впевненості.
+Not yet implemented from the design: Temporal orchestration, Common Crawl, regulatory databases, vision/OCR, an LLM arbiter for `conflict`, a persistent knowledge graph (the ledger is in-memory) and ontologies beyond two categories.
+
+## Design documents (Ukrainian)
+
+| # | Document | Topic |
+|---|---|---|
+| 01 | [Problem and acceptance criteria](docs/01-problem-and-acceptance-criteria.md) | What "100% correct" means, product tiers, modes, measurable criteria |
+| 02 | [Architecture](docs/02-architecture.md) | Components, data flow, parallelism, stack |
+| 03 | [Algorithm](docs/03-algorithm.md) | Adaptive multi-round search, truth discovery, pseudocode |
+| 04 | [Sources and rare products](docs/04-sources-and-rare-products.md) | Source authority taxonomy, playbook for scarce products |
+| 05 | [Output schema](docs/05-output-schema.md) | Field envelope, core schema, category extensions |
+| 06 | [Options and trade-offs](docs/06-options-and-tradeoffs.md) | Options per layer and the recommendation |
+| 07 | [Brainstorm](docs/07-brainstorm.md) | Ideas rated by impact and effort |
+| 08 | [Evaluation and roadmap](docs/08-evaluation-and-roadmap.md) | Golden dataset, metrics, phases |
+
+See also [QUICKSTART.md](QUICKSTART.md) for a two-minute check.
